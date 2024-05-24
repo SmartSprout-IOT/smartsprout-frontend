@@ -20,30 +20,30 @@ const IoT = () => {
             Impacto de IoT en Agricultura:
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="p-4 bg-white rounded-lg shadow-md">
+            <div className="p-4 bg-white rounded-lg shadow-md">
               <p className="text-lg mb-2">
                 Aumento de la eficiencia en el uso de recursos como agua y
                 energía.
               </p>
             </div>
-            <div class="p-4 bg-white rounded-lg shadow-md">
+            <div className="p-4 bg-white rounded-lg shadow-md">
               <p className="text-lg mb-2">
                 Optimización de la producción agrícola mediante el monitoreo en
                 tiempo real.
               </p>
             </div>
-            <div class="p-4 bg-white rounded-lg shadow-md">
+            <div className="p-4 bg-white rounded-lg shadow-md">
               <p className="text-lg mb-2">
                 Reducción de costos y aumento de la rentabilidad para los
                 agricultores.
               </p>
             </div>
-            <div class="p-4 bg-white rounded-lg shadow-md">
+            <div className="p-4 bg-white rounded-lg shadow-md">
               <p className="text-lg mb-2">
                 Mejora en la calidad de los productos agrícolas.
               </p>
             </div>
-            <div class="p-4 bg-white rounded-lg shadow-md">
+            <div className="p-4 bg-white rounded-lg shadow-md">
               <p className="text-lg mb-2">
                 Prevención de pérdidas debido a condiciones climáticas adversas
                 o plagas.
