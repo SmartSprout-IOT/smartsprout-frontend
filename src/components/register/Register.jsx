@@ -37,6 +37,7 @@ export const Register = () => {
   }, [isAuthenticated, navigate]);
 
   const handleSubmit = (event) => {
+    const imageData = `https://ui-avatars.com/api/?name=${userFirstName}+${userLastName}&background=c7d2fe&color=3730a3&bold=true`
     event.preventDefault();
     if (userPassword === confirmPassword) {
       let userCredentials = {
@@ -44,6 +45,7 @@ export const Register = () => {
         userLastName,
         userEmail,
         userPassword,
+        imageData,
       };
       dispatch(registerUser(userCredentials));
     } else {

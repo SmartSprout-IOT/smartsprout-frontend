@@ -5,11 +5,11 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import PrivateRoute from './utils/privateRoute'
 import { DashboardPage } from './pages/Dashboard'
-import { InicioDashboard } from './pages/InicioDashboard'
 import { Cultivos } from './pages/Cultivos'
 import { Subscripcion } from './pages/Subscripcion'
 import { Iot } from './pages/Iot'
 import { Metricas } from './pages/Metricas'
+import InicioDashboard from './pages/InicioDashboard'
 
 
 export const RoutesApp = () => {

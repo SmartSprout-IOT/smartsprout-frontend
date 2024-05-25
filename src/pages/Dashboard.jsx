@@ -10,21 +10,35 @@ import { Link, Outlet } from "react-router-dom";
 
 export const DashboardPage = () => {
   return (
-    <div>
-      <Sidebar>
-        <SideBarItem icon={<BiHome size={28} />} text="Inicio" id="inicio"/>
-        <SideBarItem icon={<RiPlantLine size={28} />} text="Mis Cultivos" id="cultivos"/>
-        <SideBarItem
-          icon={<PiCurrencyCircleDollar size={28} />}
-          text="Planes de Subscripción" id="subscripcion"
-        />
-        <SideBarItem icon={<MdOutlineWifiTethering size={28} />} text="IoT" id="iot"/>
-        <SideBarItem icon={<TbDeviceAnalytics size={28} />} text="Métricas" id="metricas"/>
-      </Sidebar>
-      <div>
+    <div className="flex">
+      <div className="col-auto">
+        <Sidebar>
+          <SideBarItem icon={<BiHome size={28} />} text="Inicio" id="inicio" />
+          <SideBarItem
+            icon={<RiPlantLine size={28} />}
+            text="Mis Cultivos"
+            id="cultivos"
+          />
+          <SideBarItem
+            icon={<PiCurrencyCircleDollar size={28} />}
+            text="Planes de Subscripción"
+            id="subscripcion"
+          />
+          <SideBarItem
+            icon={<MdOutlineWifiTethering size={28} />}
+            text="IoT"
+            id="iot"
+          />
+          <SideBarItem
+            icon={<TbDeviceAnalytics size={28} />}
+            text="Métricas"
+            id="metricas"
+          />
+        </Sidebar>
+      </div>
+      <div className="col-span-10 p-[24px] overflow-y-auto">
         <Outlet />
       </div>
     </div>
   );
 };
-

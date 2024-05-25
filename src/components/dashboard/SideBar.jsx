@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { CgMoreVertical } from "react-icons/cg";
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
@@ -6,12 +6,31 @@ import smartSproutLogo from "../../assets/Add/SmartSproutLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivateItem } from "../../redux/slices/sidebarSlice";
 import { useNavigate } from "react-router-dom";
+import { fetchUser } from "../../redux/thunks/userThunks";
 
 const SidebarContext = createContext();
+
 export default function SideBar({ children }) {
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   const [expanded, setExpanded] = useState(true);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+
+  const userName = user ? user.userFirstName : "User";
+  const lastName = user ? user.userLastName : "Name";
+  const imageData = user?.imageData ?? "https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1";
+  const userEmail = user ? user.userEmail : "user@example.com";
+
   return (
-    <aside className={"h-screen"}>
+    <aside className="h-screen">
       <nav className="h-full inline-flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
@@ -35,19 +54,19 @@ export default function SideBar({ children }) {
 
         <div className="border-t flex p-3">
           <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
+            src={imageData}
             alt=""
             className="w-10 h-10 rounded-md"
           />
           <div
             className={`
-                flex justify-between items-center 
-                overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
+              flex justify-between items-center 
+              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
             `}
           >
             <div className="loading-4">
-              <h4 className="font-semibold">John Doe</h4>
-              <span className="text-xs text-gray-600">johndoe@gmail.com</span>
+              <h4 className="font-semibold">{userName} {lastName}</h4>
+              <span className="text-xs text-gray-600">{userEmail}</span>
             </div>
             <CgMoreVertical size={20} />
           </div>
@@ -81,7 +100,7 @@ export function SideBarItem({ icon, text, id, alert }) {
                 : "hover:bg-indigo-50 text-gray-600"
             }
           `}
-          onClick={handleClick}
+      onClick={handleClick}
     >
       <div className="text-black">{icon}</div>
 

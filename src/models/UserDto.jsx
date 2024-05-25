@@ -3,7 +3,6 @@ export default class UserModel {
     userFirstName,
     userLastName,
     userEmail,
-    userPassword,
     userPhone,
     userBirthDate,
     imageData
@@ -11,17 +10,16 @@ export default class UserModel {
     this.userFirstName = userFirstName;
     this.userLastName = userLastName;
     this.userEmail = userEmail;
-    this.userPassword = userPassword;
     this.userPhone = userPhone;
-    this.imageData = imageData;
     this.userBirthDate = userBirthDate;
+    this.imageData = imageData;
   }
+
   static fromJson(json) {
     return new UserModel(
       json.userFirstName,
       json.userLastName,
       json.userEmail,
-      json.userPassword,
       json.userPhone,
       json.userBirthDate,
       json.imageData
@@ -33,7 +31,6 @@ export default class UserModel {
       userFirstName: this.userFirstName,
       userLastName: this.userLastName,
       userEmail: this.userEmail,
-      userPassword: this.userPassword,
       userPhone: this.userPhone,
       userBirthDate: this.userBirthDate,
       imageData: this.imageData,
