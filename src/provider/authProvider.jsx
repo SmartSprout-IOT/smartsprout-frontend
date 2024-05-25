@@ -36,4 +36,5 @@ export const register = async (credentials) => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("refresh_token");
+  localStorage.removeItem("user_id");
 };

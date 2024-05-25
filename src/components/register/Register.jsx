@@ -54,7 +54,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-[#E3F6E5]">
       <div className="w-[500px] m-4">
         <div className="bg-white p-10 rounded-xl shadow-md">
           <h2 className="text-2xl font-bold mb-4 text-center">Regístrate</h2>

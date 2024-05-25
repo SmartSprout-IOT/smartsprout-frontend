@@ -3,6 +3,9 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isUserLogged = localStorage.getItem("token") !== null;
+  console.log(isUserLogged);
+
   const handleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -45,22 +48,34 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <ul className="hidden md:flex items-center">
-          <li className="p-4">
-            <a href="/login">
-              <button className="bg-[#00000] border-4 w-[100px] rounded-md font-medium py-1 text-black">
-                Log In
-              </button>
-            </a>
-          </li>
-          <li className="p-4">
-            <a href="/signup">
-              <button className="bg-[#04BF8A] w-[100px] rounded-md font-medium py-1 text-black transition duration-300 ease-out hover:bg-[#079F73]">
-                Sign Up
-              </button>
-            </a>
-          </li>
-        </ul>
+        {isUserLogged ? (
+          <ul className="hidden md:flex items-center">
+            <li className="p-4">
+              <a href="/dashboard">
+                <button className="bg-[#04BF8A] w-[200px] rounded-md font-medium py-1 text-black transition duration-300 ease-out hover:bg-[#079F73]">
+                  Go to Dashboard
+                </button>
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="hidden md:flex items-center">
+            <li className="p-4">
+              <a href="/login">
+                <button className="bg-[#00000] border-4 w-[100px] rounded-md font-medium py-1 text-black">
+                  Log In
+                </button>
+              </a>
+            </li>
+            <li className="p-4">
+              <a href="/signup">
+                <button className="bg-[#04BF8A] w-[100px] rounded-md font-medium py-1 text-black transition duration-300 ease-out hover:bg-[#079F73]">
+                  Sign Up
+                </button>
+              </a>
+            </li>
+          </ul>
+        )}
         <div onClick={handleMenu} className="block md:hidden">
           {isOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>

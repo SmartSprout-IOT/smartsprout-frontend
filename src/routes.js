@@ -5,11 +5,13 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import PrivateRoute from './utils/privateRoute'
 import { DashboardPage } from './pages/Dashboard'
-import { Cultivos } from './pages/Cultivos'
-import { Subscripcion } from './pages/Subscripcion'
+import { Subscription } from './pages/Subscription'
 import { Iot } from './pages/Iot'
-import { Metricas } from './pages/Metricas'
+import { Analytics } from './pages/Analytics'
 import InicioDashboard from './pages/InicioDashboard'
+import UserProfile from './pages/UserProfile'
+import { Cropfields } from './pages/Cropfields'
+
 
 
 export const RoutesApp = () => {
@@ -22,10 +24,11 @@ export const RoutesApp = () => {
       <Route exact path='/dashboard' element={<PrivateRoute />}>
         <Route exact path='/dashboard' element={<DashboardPage />}>
           <Route path='inicio' element={<InicioDashboard />} />
-          <Route path='cultivos' element={<Cultivos />} />
-          <Route path='subscripcion' element={<Subscripcion />} />
+          <Route path='cultivos' element={<Cropfields />} />
+          <Route path='subscripcion' element={<Subscription />} />
           <Route path='iot' element={<Iot />} />
-          <Route path='metricas' element={<Metricas />} />
+          <Route path='metricas' element={<Analytics />} />
+          <Route path='perfil' element={<UserProfile/>}/>
         </Route>
       </Route>
     </Routes>

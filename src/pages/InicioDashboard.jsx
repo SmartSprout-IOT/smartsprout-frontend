@@ -1,9 +1,10 @@
 import React from 'react';
+import { HeaderInicioDashboard } from '../components/inicioDashboard/HeaderInicioDashboard';
 
 const InicioDashboard = () => {
   return (
     <div>
-      <h1>Inicio</h1>
+      <HeaderInicioDashboard/>
     </div>
   );
 }
