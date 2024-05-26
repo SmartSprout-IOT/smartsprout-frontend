@@ -17,8 +17,9 @@ export const login = async (credentials) => {
 
 export const register = async (credentials) => {
   const response = await axiosInstance.post("/auth/register", {
-    userFirstName: credentials.userFirstName,
+    userName: credentials.userName,
     userLastName: credentials.userLastName,
+    userMotherLastName: credentials.userMotherLastName,
     userEmail: credentials.userEmail,
     userPassword: credentials.userPassword,
     imageData: credentials.imageData,

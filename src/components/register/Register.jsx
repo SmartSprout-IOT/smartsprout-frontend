@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../redux/thunks/authThunks";
 
 export const Register = () => {
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userLastNames, setUserLastNames] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -37,11 +37,15 @@ export const Register = () => {
   }, [isAuthenticated, navigate]);
 
   const handleSubmit = (event) => {
+    const userFirstName = userName.split(" ")[0];
+    const userMotherLastName = userLastNames.split(" ")[1];
+    const userLastName = userLastNames.split(" ")[0];
     const imageData = `https://ui-avatars.com/api/?name=${userFirstName}+${userLastName}&background=c7d2fe&color=3730a3&bold=true`
     event.preventDefault();
     if (userPassword === confirmPassword) {
       let userCredentials = {
-        userFirstName,
+        userName,
+        userMotherLastName,
         userLastName,
         userEmail,
         userPassword,
@@ -62,16 +66,16 @@ export const Register = () => {
             <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
               <div>
                 <label
-                  htmlFor="userFirstName"
+                  htmlFor="userName"
                   className="block text-gray-700 font-semibold"
                 >
                   Nombres
                 </label>
                 <input
-                  type="userFirstName"
-                  id="userFirstName"
-                  value={userFirstName}
-                  onChange={(e) => setUserFirstName(e.target.value)}
+                  type="userName"
+                  id="userName"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   required
                 />
@@ -86,8 +90,8 @@ export const Register = () => {
                 <input
                   type="lastnames"
                   id="lastnames"
-                  value={userLastName}
-                  onChange={(e) => setUserLastName(e.target.value)}
+                  value={userLastNames}
+                  onChange={(e) => setUserLastNames(e.target.value)}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   required
                 />

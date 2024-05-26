@@ -1,8 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { CgMoreVertical } from "react-icons/cg";
-import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import {
-  MoreVertical,
   ChevronLast,
   ChevronFirst,
   Settings,
@@ -12,7 +9,6 @@ import smartSproutLogo from "../../assets/Add/SmartSproutLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivateItem } from "../../redux/slices/sidebarSlice";
 import { fetchUser } from "../../redux/thunks/userThunks";
-import { Button } from "antd";
 import ConfirmDialog from "../../utils/ConfirmDialog";
 import { logOutUser } from "../../redux/thunks/authThunks";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +36,8 @@ export default function SideBar({ children }) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const userName = user ? user.userFirstName : "User";
+  const userName = user ? user.userName : "User";
+  const userMotherLastName = user ? user.userMotherLastName : "Name";
   const lastName = user ? user.userLastName : "Name";
   const imageData =
     user?.imageData ??
@@ -110,7 +107,7 @@ export default function SideBar({ children }) {
           >
             <div className="loading-4">
               <h4 className="font-semibold">
-                {userName} {lastName}
+                {userName} {lastName} {userMotherLastName}
               </h4>
               <span className="text-xs text-gray-600">{userEmail}</span>
             </div>

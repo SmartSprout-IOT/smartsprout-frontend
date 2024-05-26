@@ -1,13 +1,15 @@
 export default class UserModel {
   constructor(
-    userFirstName,
+    userName,
     userLastName,
+    userMotherLastName,
     userEmail,
     userPhone,
     userBirthDate,
     imageData
   ) {
-    this.userFirstName = userFirstName;
+    this.userName = userName;
+    this.userMotherLastName = userMotherLastName;
     this.userLastName = userLastName;
     this.userEmail = userEmail;
     this.userPhone = userPhone;
@@ -17,7 +19,8 @@ export default class UserModel {
 
   static fromJson(json) {
     return new UserModel(
-      json.userFirstName,
+      json.userName,
+      json.userMotherLastName,
       json.userLastName,
       json.userEmail,
       json.userPhone,
@@ -28,7 +31,8 @@ export default class UserModel {
 
   toJson() {
     return {
-      userFirstName: this.userFirstName,
+      userName: this.userName,
+      userMotherLastName: this.userMotherLastName,
       userLastName: this.userLastName,
       userEmail: this.userEmail,
       userPhone: this.userPhone,
