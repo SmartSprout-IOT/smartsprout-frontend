@@ -11,6 +11,7 @@ import { Analytics } from './pages/Analytics'
 import InicioDashboard from './pages/InicioDashboard'
 import UserProfile from './pages/UserProfile'
 import { Cropfields } from './pages/Cropfields'
+import { PayMethods } from './pages/PayMethods'
 
 
 
@@ -29,6 +30,7 @@ export const RoutesApp = () => {
           <Route path='iot' element={<Iot />} />
           <Route path='metricas' element={<Analytics />} />
           <Route path='perfil' element={<UserProfile/>}/>
+          <Route path='metodos-de-pago' element={<PayMethods/>}/>
         </Route>
       </Route>
     </Routes>

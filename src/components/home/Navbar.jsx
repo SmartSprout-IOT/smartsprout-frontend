@@ -51,7 +51,7 @@ const Navbar = () => {
         {isUserLogged ? (
           <ul className="hidden md:flex items-center">
             <li className="p-4">
-              <a href="/dashboard">
+              <a href="/dashboard/inicio">
                 <button className="bg-[#04BF8A] w-[200px] rounded-md font-medium py-1 text-black transition duration-300 ease-out hover:bg-[#079F73]">
                   Go to Dashboard
                 </button>

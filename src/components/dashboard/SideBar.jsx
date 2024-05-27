@@ -1,10 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  ChevronLast,
-  ChevronFirst,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { ChevronLast, ChevronFirst, Settings, LogOut } from "lucide-react";
 import smartSproutLogo from "../../assets/Add/SmartSproutLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivateItem } from "../../redux/slices/sidebarSlice";
@@ -45,12 +40,14 @@ export default function SideBar({ children }) {
   const userEmail = user ? user.userEmail : "user@example.com";
 
   return (
-    <aside className="h-screen">
+    <aside className="sticky top-0 h-screen">
       <nav className="h-full inline-flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
-          <button onClick={() => {
-            navigate("/home")
-          }}>
+          <button
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
             <img
               src={smartSproutLogo}
               alt="logo"
@@ -98,7 +95,9 @@ export default function SideBar({ children }) {
           </div>
         </div>
         <div className="border-t flex p-3">
-          <img src={imageData} alt="" className="w-10 h-10 rounded-md" />
+          <button onClick={() => navigate("/dashboard/perfil")}>
+            <img src={imageData} alt="" className="w-10 h-10 rounded-md" />
+          </button>
           <div
             className={`
               flex justify-between items-center 
@@ -129,7 +128,9 @@ export function SideBarItem({ icon, text, id, alert }) {
   const navigate = useNavigate();
   const activateItem = useSelector((state) => state.sidebar.activateItem);
   const pathLocation = window.location.pathname.split("/")[2];
-  const active = activateItem === id && pathLocation===activateItem || pathLocation === id;
+  const active =
+    (activateItem === id && pathLocation === activateItem) ||
+    pathLocation === id;
   const { expanded } = useContext(SidebarContext);
 
   const handleClick = () => {

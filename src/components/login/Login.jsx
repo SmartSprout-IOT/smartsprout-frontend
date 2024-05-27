@@ -23,7 +23,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/dashboard/inicio");
     }
   }, [isAuthenticated, navigate]);
 

@@ -32,7 +32,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/dashboard/inicio");
     }
   }, [isAuthenticated, navigate]);
 

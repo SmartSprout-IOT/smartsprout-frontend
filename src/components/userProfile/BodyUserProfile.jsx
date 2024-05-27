@@ -5,9 +5,11 @@ import { Upload } from "antd";
 import { storage } from "../../firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 export const BodyUserProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user, loading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -80,13 +82,17 @@ export const BodyUserProfile = () => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
+
+  const handlePay = () => {
+    navigate("/dashboard/metodos-de-pago");
+  };
   
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading user data</div>;
 
   return (
-    <div className="">
+    <div className="w-[100%] md:w-[80%]">
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <div>
@@ -213,7 +219,9 @@ export const BodyUserProfile = () => {
       </div>
 
       <div className="mt-6 flex items-center">
-        <button className="flex items-center text-red-600 hover:text-red-800">
+        <button onClick={() => {
+          handlePay();
+        }} className="flex items-center text-red-600 hover:text-red-800">
           <span>Agregar Método de Pago</span>
           <span className="ml-2 text-2xl">+</span>
         </button>
