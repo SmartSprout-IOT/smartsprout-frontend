@@ -1,4 +1,5 @@
 import CropField from "../models/CropFieldDto";
+import axiosInstance from "./axiosConfig";
 
 export const getCropFields = async () => {
   const userId = localStorage.getItem("user_id");

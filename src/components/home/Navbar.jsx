@@ -4,7 +4,6 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isUserLogged = localStorage.getItem("token") !== null;
-  console.log(isUserLogged);
 
   const handleMenu = () => {
     setIsOpen(!isOpen);

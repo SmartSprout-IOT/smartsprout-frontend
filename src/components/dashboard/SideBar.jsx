@@ -28,9 +28,6 @@ export default function SideBar({ children }) {
     navigate("/home");
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   const userName = user ? user.userName : "User";
   const userMotherLastName = user ? user.userMotherLastName : "Name";
   const lastName = user ? user.userLastName : "Name";
