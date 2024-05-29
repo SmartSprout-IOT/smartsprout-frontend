@@ -1,6 +1,7 @@
 import React from "react";
 import CropFieldCard from "./CropFieldCard";
 import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const parcels = [
   {
@@ -48,6 +49,8 @@ const parcels = [
 ];
 
 export const BodyCropField = () => {
+  const navigate = useNavigate();
+  
   return (
     <div>
       <div className="mt-[20px] p-4 rounded-md border-2 h-auto">
@@ -70,10 +73,22 @@ export const BodyCropField = () => {
       <div className="h-10"></div>
       <div className="p-4 rounded-md border-2 h-auto">
         <div className="m-auto text-center">
-          <button className="bg-orange-500 text-white px-2 py-2 rounded-full shadow-md hover:bg-orange-600 focus:outline-none">
+          <button
+            className="bg-orange-500 text-white px-2 py-2 rounded-full shadow-md hover:bg-orange-600 focus:outline-none"
+            onClick={() => {
+              navigate("/dashboard/cultivos/add-cultivo");
+            }}
+          >
             <Plus />
           </button>
-          <p className="text-orange-500 font-bold">Agregar nueva plantación</p>
+          <p
+            className="text-orange-500 font-bold"
+            onClick={() => {
+              navigate("/dashboard/cultivos/add-cultivo");
+            }}
+          >
+            Agregar nueva plantación
+          </p>
         </div>
       </div>
     </div>
