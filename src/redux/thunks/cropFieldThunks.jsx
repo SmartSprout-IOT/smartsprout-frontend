@@ -8,7 +8,7 @@ export const fetchCropFields = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await getCropFields();
-            const cropFields = response.map(cropField => CropField.fromJson(cropField));
+            const cropFields = response.map(cropField => CropField.fromJson(cropField).toJson());
             return cropFields;
         }
         catch (error) {
