@@ -4,6 +4,7 @@ import registerSlice from "../slices/registerSlice";
 import sidebarReducer from "../slices/sidebarSlice";
 import userSlice from "../slices/userSlice";
 import cropFieldSlice from "../slices/cropFieldSlice";
+import updateCropFieldSlice from "../slices/updateCropFieldSlice";
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         sidebar: sidebarReducer,
         user: userSlice,
         cropfield: cropFieldSlice,
+        updateCropField: updateCropFieldSlice,
     },
 });
 

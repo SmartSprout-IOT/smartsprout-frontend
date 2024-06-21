@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCropFields } from "../thunks/cropFieldThunks";
+import { fetchCropFields, updateCropFieldDto } from "../thunks/cropFieldThunks";
 
 
 const cropFieldSlice = createSlice({
@@ -25,21 +25,26 @@ const cropFieldSlice = createSlice({
             state.error = action.payload || action.error.message;
         });
 
-        // builder.addCase(updateCropFieldDto.pending, (state) => {
-        //     state.loading = true;
-        //     state.error = null;
-        // });
+        builder.addCase(updateCropFieldDto.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        });
 
-        // builder.addCase(updateCropFieldDto.fulfilled, (state, action) => {
-        //     state.loading = false;
-        //     state.cropField = action.payload;
-        //     state.error = null;
-        // });
+        builder.addCase(updateCropFieldDto.fulfilled, (state, action) => {
+            state.loading = false;
+            state.items = state.items.map((item) => {
+                if (item.id === action.payload.id) {
+                    return action.payload;
+                }
+                return item;
+            });
+            state.error = null;
+        });
 
-        // builder.addCase(updateCropFieldDto.rejected, (state, action) => {
-        //     state.loading = false;
-        //     state.error = action.payload || action.error.message;
-        // });
+        builder.addCase(updateCropFieldDto.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload || action.error.message;
+        });
     }
 });
 
