@@ -11,6 +11,7 @@ export default class CropField {
     cropVariety,
     cropPlant,
     cropPlantingDate,
+    irrigationStartTime,
     numPlants,
     idealTemperature,
     idealHumidity,
@@ -27,6 +28,7 @@ export default class CropField {
     this.cropVariety = cropVariety;
     this.cropPlant = cropPlant;
     this.cropPlantingDate = cropPlantingDate;
+    this.irrigationStartTime = irrigationStartTime;
     this.numPlants = numPlants;
     this.idealTemperature = idealTemperature;
     this.idealHumidity = idealHumidity;
@@ -45,6 +47,7 @@ export default class CropField {
       json.cropVariety,
       json.cropPlant,
       json.cropPlantingDate,
+      json.irrigationStartTime,
       json.numPlants,
       json.idealTemperature,
       json.idealHumidity,
@@ -64,6 +67,7 @@ export default class CropField {
       cropVariety: this.cropVariety,
       cropPlant: this.cropPlant,
       cropPlantingDate: this.cropPlantingDate,
+      irrigationStartTime: this.irrigationStartTime,
       numPlants: this.numPlants,
       idealTemperature: this.idealTemperature,
       idealHumidity: this.idealHumidity,

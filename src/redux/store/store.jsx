@@ -5,6 +5,9 @@ import sidebarReducer from "../slices/sidebarSlice";
 import userSlice from "../slices/userSlice";
 import cropFieldSlice from "../slices/cropFieldSlice";
 import updateCropFieldSlice from "../slices/updateCropFieldSlice";
+import irrigationSuggestionSlice from "../slices/irrigationSuggestionSlice";
+import iotManagementSlice from "../slices/iotManagementSlice";
+import stopIoTManagementSlice from "../slices/stopIoTManagementSlice";
 
 const store = configureStore({
     reducer: {
@@ -14,6 +17,9 @@ const store = configureStore({
         user: userSlice,
         cropfield: cropFieldSlice,
         updateCropField: updateCropFieldSlice,
+        irrigationSuggestion: irrigationSuggestionSlice,
+        iotManagement: iotManagementSlice,
+        stopIrrigation: stopIoTManagementSlice,
     },
 });
 
