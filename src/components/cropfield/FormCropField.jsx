@@ -6,7 +6,10 @@ import {
   Autocomplete,
 } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCropFieldById, updateCropFieldDto } from "../../redux/thunks/cropFieldThunks";
+import {
+  fetchCropFieldById,
+  updateCropFieldDto,
+} from "../../redux/thunks/cropFieldThunks";
 import { useParams, useNavigate } from "react-router-dom"; // Importa useNavigate
 import { clearCropFieldState } from "../../redux/slices/updateCropFieldSlice";
 
@@ -29,7 +32,9 @@ export const FormCropField = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Usa useNavigate en lugar de useHistory
-  const { cropfield, loading, error } = useSelector((state) => state.updateCropField);
+  const { cropfield, loading, error } = useSelector(
+    (state) => state.updateCropField
+  );
 
   const initialState = {
     cropFieldName: "",
@@ -43,12 +48,10 @@ export const FormCropField = () => {
     cropPlant: "",
     cropPlantingDate: "",
     numPlants: "",
-    minTemperature: "",
-    maxTemperature: "",
-    minHumidity: "",
-    maxHumidity: "",
+    idealTemperature: "",
+    idealHumidity: "",
   };
-  
+
   const [cropField, setCropField] = useState(initialState);
 
   useEffect(() => {
@@ -74,10 +77,8 @@ export const FormCropField = () => {
         cropPlant: cropfield.cropPlant || "",
         cropPlantingDate: cropfield.cropPlantingDate || "",
         numPlants: cropfield.numPlants || "",
-        minTemperature: cropfield.minTemperature || "",
-        maxTemperature: cropfield.maxTemperature || "",
-        minHumidity: cropfield.minHumidity || "",
-        maxHumidity: cropfield.maxHumidity || "",
+        idealTemperature: cropfield.idealTemperature || "",
+        idealHumidity: cropfield.idealHumidity || "",
       });
     }
   }, [cropfield]);
@@ -89,7 +90,7 @@ export const FormCropField = () => {
   }, [dispatch]);
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCc6B5eTCAvXyLm8Jr8iFGUHyafcWXFvdg", // Reemplaza con tu clave de API
+    googleMapsApiKey: "AIzaSyCc6B5eTCAvXyLm8Jr8iFGUHyafcWXFvdg",
     libraries: ["places"],
   });
 
@@ -126,10 +127,10 @@ export const FormCropField = () => {
           latitudeData: lat,
           longitudeData: lng,
         }));
-        setMapCenter({ lat, lng }); // Actualizamos el centro del mapa
+        setMapCenter({ lat, lng });
         if (mapRef.current) {
           mapRef.current.panTo({ lat, lng });
-          mapRef.current.setZoom(14); // Puedes ajustar el zoom según sea necesario
+          mapRef.current.setZoom(14);
         }
       }
     }
@@ -149,11 +150,20 @@ export const FormCropField = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("CropField data submitted: ", cropField);
-    dispatch(updateCropFieldDto(cropField)).then(() => {
-      navigate("/dashboard/cultivos"); // Usa navigate en lugar de history.push
-    });
+    // Determinar si estamos creando o actualizando
+    console.log("CropField ID: ", id);
+    if (id) {
+      // Si hay un ID, estamos actualizando un campo de cultivo existente
+      dispatch(updateCropFieldDto({ cropField, cropFieldId: id })).then(() => {
+        navigate("/dashboard/cultivos");
+      });
+    } else {
+      // Si no hay ID, estamos creando un nuevo campo de cultivo
+      dispatch(updateCropFieldDto({ cropField })).then(() => {
+        navigate("/dashboard/cultivos");
+      });
+    }
   };
-
 
   return (
     <div>
@@ -292,13 +302,11 @@ export const FormCropField = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700">
-              Temperatura Mínima (°C)
-            </label>
+            <label className="block text-gray-700">Humedad Ideal (%)</label>
             <input
               type="number"
-              name="minTemperature"
-              value={cropField.minTemperature}
+              name="idealHumidity"
+              value={cropField.idealHumidity}
               onChange={handleChange}
               className="mt-1 p-2 border rounded w-full"
             />
@@ -306,34 +314,12 @@ export const FormCropField = () => {
 
           <div className="mb-4">
             <label className="block text-gray-700">
-              Temperatura Máxima (°C)
+              Temperatura Ideal (°C)
             </label>
             <input
               type="number"
-              name="maxTemperature"
-              value={cropField.maxTemperature}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700">Humedad Mínima (%)</label>
-            <input
-              type="number"
-              name="minHumidity"
-              value={cropField.minHumidity}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700">Humedad Máxima (%)</label>
-            <input
-              type="number"
-              name="maxHumidity"
-              value={cropField.maxHumidity}
+              name="idealTemperature"
+              value={cropField.idealTemperature}
               onChange={handleChange}
               className="mt-1 p-2 border rounded w-full"
             />
@@ -342,7 +328,7 @@ export const FormCropField = () => {
 
         <div className="flex justify-center">
           <button
-          onClick={handleSubmit}
+            onClick={handleSubmit}
             type="submit"
             className="bg-orange-500 text-white px-4 py-2 rounded shadow-md hover:bg-orange-600 focus:outline-none"
           >

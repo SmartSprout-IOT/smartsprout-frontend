@@ -12,10 +12,8 @@ export default class CropField {
     cropPlant,
     cropPlantingDate,
     numPlants,
-    minTemperature,
-    maxTemperature,
-    minHumidity,
-    maxHumidity,
+    idealTemperature,
+    idealHumidity,
     irrigationRecords
   ) {
     this.cropFieldId = cropFieldId;
@@ -30,10 +28,8 @@ export default class CropField {
     this.cropPlant = cropPlant;
     this.cropPlantingDate = cropPlantingDate;
     this.numPlants = numPlants;
-    this.minTemperature = minTemperature;
-    this.maxTemperature = maxTemperature;
-    this.minHumidity = minHumidity;
-    this.maxHumidity = maxHumidity;
+    this.idealTemperature = idealTemperature;
+    this.idealHumidity = idealHumidity;
     this.irrigationRecords = irrigationRecords;
   }
   static fromJson(json) {
@@ -50,10 +46,8 @@ export default class CropField {
       json.cropPlant,
       json.cropPlantingDate,
       json.numPlants,
-      json.minTemperature,
-      json.maxTemperature,
-      json.minHumidity,
-      json.maxHumidity,
+      json.idealTemperature,
+      json.idealHumidity,
       json.irrigationRecords
     );
   }
@@ -71,10 +65,8 @@ export default class CropField {
       cropPlant: this.cropPlant,
       cropPlantingDate: this.cropPlantingDate,
       numPlants: this.numPlants,
-      minTemperature: this.minTemperature,
-      maxTemperature: this.maxTemperature,
-      minHumidity: this.minHumidity,
-      maxHumidity: this.maxHumidity,
+      idealTemperature: this.idealTemperature,
+      idealHumidity: this.idealHumidity,
       irrigationRecords: this.irrigationRecords,
     };
   }

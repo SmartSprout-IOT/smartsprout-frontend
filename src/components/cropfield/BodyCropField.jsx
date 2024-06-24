@@ -26,7 +26,9 @@ export const BodyCropField = () => {
     <div>
       <div className="mt-[20px] p-4 rounded-md border-2 h-auto">
         <div className="container mx-auto">
-        <h1 className="text-[22px] font-bold mb-8">👋 Hola {user ? user.userName : 'Invitado'}!</h1>
+          <h1 className="text-[22px] font-bold mb-8">
+            👋 Hola {user ? user.userName : "Invitado"}!
+          </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {items.map((parcel, index) => (
               <CropFieldCard

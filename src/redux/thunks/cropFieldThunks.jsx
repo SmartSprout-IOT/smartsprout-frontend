@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import CropField from "../../models/CropFieldDto";
-import { getCropFieldById, getCropFields, updateCropField } from "../../provider/cropFieldProvider";
+import { getCropFieldById, getCropFields, updateCropField, updateCropFieldById } from "../../provider/cropFieldProvider";
 
 
 export const fetchCropFields = createAsyncThunk(
@@ -32,15 +32,19 @@ export const fetchCropFieldById = createAsyncThunk(
 );
 
 export const updateCropFieldDto = createAsyncThunk(
-    "cropField/updateCropField",
-    async (cropField, thunkAPI) => {
-        try {
-            const response = await updateCropField(cropField);
-            const cropFieldModel = CropField.fromJson(response);
-            return cropFieldModel.toJson();
+    'cropField/updateCropField',
+    async ({ cropField, cropFieldId }, thunkAPI) => {
+      try {
+        let response;
+        if (cropFieldId) {
+          response = await updateCropField(cropField, cropFieldId); // Llama a la función de actualización con el ID
+        } else {
+          response = await updateCropField(cropField); // Llama a la función de creación sin ID
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
-        }
+        const cropFieldModel = CropField.fromJson(response);
+        return cropFieldModel.toJson();
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+      }
     }
-);
+  );
