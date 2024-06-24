@@ -8,6 +8,7 @@ import updateCropFieldSlice from "../slices/updateCropFieldSlice";
 import irrigationSuggestionSlice from "../slices/irrigationSuggestionSlice";
 import iotManagementSlice from "../slices/iotManagementSlice";
 import stopIoTManagementSlice from "../slices/stopIoTManagementSlice";
+import irrigationRecordsService from "../slices/irrigationRecordsSlice";
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         irrigationSuggestion: irrigationSuggestionSlice,
         iotManagement: iotManagementSlice,
         stopIrrigation: stopIoTManagementSlice,
+        irrigationRecords: irrigationRecordsService,
     },
 });
 
