@@ -24,24 +24,27 @@ export const BodyIoT = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (items.length > 0) {
+    if (items.length > 0 && !selectedItem) {
+      console.log(items);
       setSelectedItem(items[0]);
+      console.log("Selected Item UE1:", items[0]);
       if (items[0]) {
         dispatch(fetchIrrigationSuggestionByCropFieldId(items[0].cropFieldId));
       }
     }
-  }, [items, dispatch]);
+  }, [items, selectedItem, dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      console.log("Selected Item UE2:", selectedItem);
       if (selectedItem) {
         dispatch(
           fetchIrrigationSuggestionByCropFieldId(selectedItem.cropFieldId)
         );
       }
-    }, 5000); // Actualiza cada 5 segundos
+    }, 5000);
 
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, [dispatch, selectedItem]);
 
   const handleChange = (event) => {
@@ -152,10 +155,10 @@ export const BodyIoT = () => {
             {selectedItem ? selectedItem.irrigationStartTime : "---"}
           </span>
         </h2>
-        <h2 className="text-lg font-mono font-bold">
+        {/* <h2 className="text-lg font-mono font-bold">
           Tiempo Transcurrido:{" "}
           <span className="text-red-500 text-xl font-bold">12:45:00</span>
-        </h2>
+        </h2> */}
       </div>
       <div className="mt-4 w-full flex justify-center items-center">
         {irrigationSuggestion && irrigationSuggestion.irrigation ? (
